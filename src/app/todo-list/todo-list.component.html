@@ -1,0 +1,30 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Priority</th>
+      <th>Delete</th>
+      <th>Done</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let todo of todos; trackBy: trackByFn">
+      <td>{{ todo.description }}</td>
+      <td>{{ todo.priority }}</td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteTodo.emit(todo.id)">
+          Delete
+        </button>
+      </td>
+      <td>
+        <button
+          *ngIf="!todo.done"
+          class="btn btn-success"
+          (click)="markAsDone.emit(todo.id)"
+        >
+          Done
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

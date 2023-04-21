@@ -1,0 +1,17 @@
+<div class="container mt-4">
+  <app-new-todo (addTodo)="service.addTodo($event)"></app-new-todo>
+
+  <ng-container *ngIf="todos$ | async as todos">
+    <app-todo-list
+      [todos]="todos"
+      (deleteTodo)="service.deleteTodo($event)"
+      (markAsDone)="service.done($event)"
+    ></app-todo-list>
+
+    <app-todo-status
+      *ngIf="count$ | async as count"
+      [doneCount]="count.done"
+      [undoneCount]="count.undone"
+    ></app-todo-status>
+  </ng-container>
+</div>
